@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mini Trainer</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body style="font-family:sans-serif;padding:16px;background:#111;color:#fff">
+<h2>Mazoezi</h2>
+<div id="list">Inapakia...</div>
+<script>
+const sb = supabase.createClient('https://jqbyxrpvzbpyobvbblly.supabase.co/rest/v1/','sb_publishable_3G9zhZMSZ9VrNKdkzaSDIA_wXE6WAQh');
+async function load(){
+  const {data,error} = await sb.from('Workouts').select('*');
+  const el = document.getElementById('list');
+  if(error){ el.textContent = 'Error: ' + error.message; return; }
+  el.innerHTML = data.map(w =>
+    `<div style="margin:12px 0;padding:12px;background:#222;border-radius:10px">
+      <b>${w.title}</b><br>${w.description}<br>
+      <a style="color:#4ade80" href="${w.video_url}" target="_blank">Tazama video</a>
+    </div>`).join('');
+}
+load();
+</script>
+</body></html>
