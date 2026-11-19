@@ -9,7 +9,7 @@
 <h2>Mazoezi</h2>
 <div id="list">Inapakia...</div>
 <script>
-const sb = supabase.createClient('https://jqbyxrpvzbpyobvbblly.supabase.co/rest/v1/','sb_publishable_3G9zhZMSZ9VrNKdkzaSDIA_wXE6WAQh');
+const sb = supabase.createClient('https://jqbyxrpvzbpyobvbblly.supabase.co','sb_publishable_3G9zhZMSZ9VrNKdkzaSDIA_wXE6WAQh');
 async function load(){
   const {data,error} = await sb.from('Workouts').select('*');
   const el = document.getElementById('list');
